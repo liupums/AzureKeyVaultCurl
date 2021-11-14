@@ -1,6 +1,5 @@
 sudo apt install -y build-essential   libssl-dev   libcurl4-openssl-dev   libjson-c-dev   cmake   nginx
 cd opt
-echo $1
 git clone https://pop:$1@github.com/liupums/AkvOpensslEngine.git
 cd AkvOpensslEngine/src
 mkdir build
