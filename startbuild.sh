@@ -17,6 +17,6 @@ openssl req -new -x509 -config openssl.cnf -engine e_akv -keyform engine -key va
 sudo cp cert.pem /etc/ssl/certs/contoso_rsa_cert.cer
 sudo cp ../nginx.conf /etc/nginx/nginx.conf
 sudo cp ../default /etc/nginx/sites-available/default
-sudo sed -i 's/KEYVAULTNAME/$2/g' /etc/nginx/sites-available/default
+sudo sed -i "s/KEYVAULTNAME/$2/g" /etc/nginx/sites-available/default
 sudo /etc/init.d/nginx restart
 curl -k https://localhost:443 -vv
