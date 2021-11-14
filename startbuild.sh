@@ -12,10 +12,11 @@ openssl engine -vvv -t e_akv
 cp ../openssl.cnf .
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az login --identity --allow-no-subscriptions
-az keyvault key create --vault-name linuxbuildtestkeyvault --name testrsakey --kty RSA --size 2048
-openssl req -new -x509 -config openssl.cnf -engine e_akv -keyform engine -key vault:linuxbuildtestkeyvault:testrsakey -out cert.pem
+az keyvault key create --vault-name $2 --name testrsakey --kty RSA --size 2048
+openssl req -new -x509 -config openssl.cnf -engine e_akv -keyform engine -key vault:$2:testrsakey -out cert.pem
 sudo cp cert.pem /etc/ssl/certs/contoso_rsa_cert.cer
 sudo cp ../nginx.conf /etc/nginx/nginx.conf
 sudo cp ../default /etc/nginx/sites-available/default
+sudo sed -i 's/KEYVAULTNAME/$2/g' /etc/nginx/sites-available/default
 sudo /etc/init.d/nginx restart
 curl -k https://localhost:443 -vv
