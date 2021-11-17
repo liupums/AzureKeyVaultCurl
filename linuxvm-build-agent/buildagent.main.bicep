@@ -20,11 +20,7 @@ param adminUserName string = 'azureuser'
 param adminSshPubKey string
 
 @description('build script')
-param buildScriptPath string
-
-@secure()
-@description('git PTAT')
-param gitPAT string
+param buildScriptPath string = "${deployment().properties.templateLink.id}/startbuild.sh"
 
 @description('Name of Key Vault')
 param keyVaultName string = take('${vmName}KeyVault', 24)
@@ -106,7 +102,6 @@ module vmScript './buildagent.vmscript.bicep' = {
   params: {
     vmName: vmName
     buildScriptPath: buildScriptPath
-    gitPAT: gitPAT
     akvName: kv.outputs.akvName
   }
 }
