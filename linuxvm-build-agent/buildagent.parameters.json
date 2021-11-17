@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminSshPubKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0pLvzM/8/yVVPpSZKtB/fRKPsp5vGmXl7kBmLU5sRzPMx3AJ34oQ4VQHB9nvHVA9JxLYxbdetBz+2hyCFDVfo4E1Nl3FMTBAlueE8kp8d9ghsN5ILDjrH7cABOtAHdjwNzeTARGJS37mTSf4Z4iRe0qhrWHa5zjHiDMOrSEw+81cpzeOrjQxLm5jTJ0ZN8IsMycD0LKaR/abaFuDbn4ejCGYBBr3qogb6vEjlZgVmZ3Cp3CgtiI5Fq6+oDA4lNw3x8b561GivNvXoOFd1/YaLnTVond4Q5e694nJo2RqNLKm6ccOzLZHBIOq2WqKwFdM9Y3EjUUQs4QCbQrGESKFf"
+    },
+    "buildScriptPath": {
+      "value": "https://raw.githubusercontent.com/liupums/AzureKeyVaultCurl/main/startbuild.sh"
+    },
+    "gitPAT": {
+      "value": "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"
+    },
+    "vmName": {
+      "value": "popsecondtry"
+    },
+    "deployKeyVault": {
+      "value": true
+    }
+  }
+}
