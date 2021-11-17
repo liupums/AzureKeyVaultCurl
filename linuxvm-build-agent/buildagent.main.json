@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.4.1008.15138",
-      "templateHash": "15504993557645695460"
+      "templateHash": "18298936484499282268"
     }
   },
   "parameters": {
@@ -26,13 +26,6 @@
       "type": "string",
       "metadata": {
         "description": "Administrative SSH key for the VM"
-      }
-    },
-    "buildScriptPath": {
-      "type": "string",
-      "defaultValue": "[format('{0}/startbuild.sh', deployment().properties.templateLink.id)]",
-      "metadata": {
-        "description": "build script"
       }
     },
     "keyVaultName": {
@@ -68,10 +61,15 @@
       "metadata": {
         "description": "Deploy KeyVault"
       }
+    },
+    "buildScriptPath": {
+      "type": "string",
+      "defaultValue": "[deployment().properties.templateLink.id]"
     }
   },
   "functions": [],
   "variables": {
+    "scriptPath": "[uri(parameters('buildScriptPath'), 'startbuild.sh')]",
     "vNetBuildAgentDefinitions": {
       "name": "buildagentVnet",
       "location": "[parameters('location')]",
@@ -585,7 +583,7 @@
             "value": "[parameters('vmName')]"
           },
           "buildScriptPath": {
-            "value": "[parameters('buildScriptPath')]"
+            "value": "[variables('scriptPath')]"
           },
           "akvName": {
             "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'kvDeploy'), '2020-06-01').outputs.akvName.value]"

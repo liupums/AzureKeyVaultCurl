@@ -19,9 +19,6 @@ param adminUserName string = 'azureuser'
 @description('Administrative SSH key for the VM')
 param adminSshPubKey string
 
-@description('build script')
-param buildScriptPath string = '${deployment().properties.templateLink.id}/startbuild.sh'
-
 @description('Name of Key Vault')
 param keyVaultName string = take('${vmName}KeyVault', 24)
 
@@ -36,6 +33,9 @@ param vmSku string = 'Standard_B2ms'
 
 @description('Deploy KeyVault')
 param deployKeyVault bool
+
+param buildScriptPath string = deployment().properties.templateLink.id
+var scriptPath = uri(buildScriptPath, 'startbuild.sh')
 
 // ============================================================================
 // Resources
@@ -101,7 +101,7 @@ module vmScript './buildagent.vmscript.bicep' = {
   scope: rg
   params: {
     vmName: vmName
-    buildScriptPath: buildScriptPath
+    buildScriptPath: scriptPath
     akvName: kv.outputs.akvName
   }
 }
