@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.4.1008.15138",
-      "templateHash": "15771665343524798842"
+      "templateHash": "15504993557645695460"
     }
   },
   "parameters": {
@@ -30,14 +30,9 @@
     },
     "buildScriptPath": {
       "type": "string",
+      "defaultValue": "[format('{0}/startbuild.sh', deployment().properties.templateLink.id)]",
       "metadata": {
         "description": "build script"
-      }
-    },
-    "gitPAT": {
-      "type": "secureString",
-      "metadata": {
-        "description": "git PTAT"
       }
     },
     "keyVaultName": {
@@ -592,9 +587,6 @@
           "buildScriptPath": {
             "value": "[parameters('buildScriptPath')]"
           },
-          "gitPAT": {
-            "value": "[parameters('gitPAT')]"
-          },
           "akvName": {
             "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'kvDeploy'), '2020-06-01').outputs.akvName.value]"
           }
@@ -606,7 +598,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.4.1008.15138",
-              "templateHash": "11013607880515391085"
+              "templateHash": "3146178266448506439"
             }
           },
           "parameters": {
@@ -620,12 +612,6 @@
               "type": "string",
               "metadata": {
                 "description": "Run build script"
-              }
-            },
-            "gitPAT": {
-              "type": "secureString",
-              "metadata": {
-                "description": "Git PAT"
               }
             },
             "akvName": {
@@ -655,7 +641,7 @@
                   ]
                 },
                 "protectedSettings": {
-                  "commandToExecute": "[format('sh startbuild.sh {0} {1}', parameters('gitPAT'), parameters('akvName'))]"
+                  "commandToExecute": "[format('sh startbuild.sh {0}', parameters('akvName'))]"
                 }
               }
             }

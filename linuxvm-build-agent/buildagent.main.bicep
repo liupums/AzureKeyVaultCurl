@@ -20,7 +20,7 @@ param adminUserName string = 'azureuser'
 param adminSshPubKey string
 
 @description('build script')
-param buildScriptPath string = "${deployment().properties.templateLink.id}/startbuild.sh"
+param buildScriptPath string = '${deployment().properties.templateLink.id}/startbuild.sh'
 
 @description('Name of Key Vault')
 param keyVaultName string = take('${vmName}KeyVault', 24)

@@ -12,10 +12,6 @@ param vmName string
 @description('Run build script')
 param buildScriptPath string
 
-@secure()
-@description('Git PAT')
-param  gitPAT string
-
 @description('Azure Key Vault name')
 param  akvName string
 
@@ -45,7 +41,7 @@ resource vm_build 'Microsoft.Compute/virtualMachines/extensions@2020-06-01' = {
       ]
     }
     protectedSettings: {
-      commandToExecute: 'sh startbuild.sh ${gitPAT} ${akvName}'
+      commandToExecute: 'sh startbuild.sh ${akvName}'
     }
   }
 }
