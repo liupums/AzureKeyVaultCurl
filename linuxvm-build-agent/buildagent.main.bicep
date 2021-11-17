@@ -34,7 +34,7 @@ param vmSku string = 'Standard_B2ms'
 @description('Deploy KeyVault')
 param deployKeyVault bool
 
-param buildScriptPath string = uri(deployment().properties.templateLink.id, '/startbuild.sh')
+param buildScriptPath string = uri(deployment().properties.templateLink.uri, '/startbuild.sh')
 
 
 // ============================================================================

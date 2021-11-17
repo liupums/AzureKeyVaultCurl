@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.4.1008.15138",
-      "templateHash": "5766732042468322134"
+      "templateHash": "6712858895008480801"
     }
   },
   "parameters": {
@@ -64,7 +64,7 @@
     },
     "buildScriptPath": {
       "type": "string",
-      "defaultValue": "[uri(deployment().properties.templateLink.id, '/startbuild.sh')]"
+      "defaultValue": "[uri(deployment().properties.templateLink.uri, '/startbuild.sh')]"
     }
   },
   "functions": [],
