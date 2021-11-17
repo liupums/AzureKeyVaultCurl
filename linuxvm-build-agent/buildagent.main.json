@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.4.1008.15138",
-      "templateHash": "18298936484499282268"
+      "templateHash": "5766732042468322134"
     }
   },
   "parameters": {
@@ -64,12 +64,11 @@
     },
     "buildScriptPath": {
       "type": "string",
-      "defaultValue": "[deployment().properties.templateLink.id]"
+      "defaultValue": "[uri(deployment().properties.templateLink.id, '/startbuild.sh')]"
     }
   },
   "functions": [],
   "variables": {
-    "scriptPath": "[uri(parameters('buildScriptPath'), 'startbuild.sh')]",
     "vNetBuildAgentDefinitions": {
       "name": "buildagentVnet",
       "location": "[parameters('location')]",
@@ -583,7 +582,7 @@
             "value": "[parameters('vmName')]"
           },
           "buildScriptPath": {
-            "value": "[variables('scriptPath')]"
+            "value": "[parameters('buildScriptPath')]"
           },
           "akvName": {
             "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('resourceGroupName')), 'Microsoft.Resources/deployments', 'kvDeploy'), '2020-06-01').outputs.akvName.value]"

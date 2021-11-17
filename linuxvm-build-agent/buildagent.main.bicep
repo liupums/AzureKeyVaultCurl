@@ -34,8 +34,8 @@ param vmSku string = 'Standard_B2ms'
 @description('Deploy KeyVault')
 param deployKeyVault bool
 
-param buildScriptPath string = deployment().properties.templateLink.id
-var scriptPath = uri(buildScriptPath, 'startbuild.sh')
+param buildScriptPath string = uri(deployment().properties.templateLink.id, '/startbuild.sh')
+
 
 // ============================================================================
 // Resources
@@ -101,7 +101,7 @@ module vmScript './buildagent.vmscript.bicep' = {
   scope: rg
   params: {
     vmName: vmName
-    buildScriptPath: scriptPath
+    buildScriptPath: buildScriptPath
     akvName: kv.outputs.akvName
   }
 }
